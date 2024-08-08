@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI and Markdown App</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>AI Prompt</h3>
+            <form id="ai-form">
+                <div class="form-group">
+                    <label for="prompt-select">Select a Prompt</label>
+                    <select class="form-control" id="prompt-select">
+                        <option value="Tell me a joke">Tell me a joke</option>
+                        <option value="Explain relativity">Explain relativity</option>
+                        <option value="Give me a recipe for chocolate cake">Give me a recipe for chocolate cake</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="extra-instructions">Extra Instructions</label>
+                    <textarea class="form-control" id="extra-instructions" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="getAIResponse()">Submit</button>
+            </form>
+            <div class="mt-3">
+                <h5>AI Response</h5>
+                <div id="ai-response" class="border p-3"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3>Markdown Editor</h3>
+            <form id="markdown-form">
+                <div class="form-group">
+                    <label for="markdown-content">Markdown Content</label>
+                    <textarea class="form-control" id="markdown-content" rows="6"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveMarkdown()">Save</button>
+            </form>
+            <div class="mt-3">
+                <h5>Rendered Markdown</h5>
+                <div id="rendered-markdown" class="border p-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function getAIResponse() {
+    const prompt = $('#prompt-select').val();
+    const extraInstructions = $('#extra-instructions').val();
+    $.ajax({
+        url: '/get_response',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ prompt: prompt, extra_instructions: extraInstructions }),
+        success: function(response) {
+            $('#ai-response').text(response.response);
+        }
+    });
+}
+
+function saveMarkdown() {
+    const markdownContent = $('#markdown-content').val();
+    $.ajax({
+        url: '/save_markdown',
+        method: 'POST',
+        data: { markdown_content: markdownContent },
+        success: function(response) {
+            $('#rendered-markdown').html(response.html_content);
+        }
+    });
+}
+</script>
+</body>
+</html>
