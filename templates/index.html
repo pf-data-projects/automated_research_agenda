@@ -17,8 +17,8 @@
         <div class="col-md-6">
             <h3>AI Prompt</h3>
             <form id="ai-form">
-                <div class="form-group">
-                    <label for="prompt-select">Select a Prompt</label>
+                <div class="form-group" id="prompt-select-container">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="40">
                     <select class="form-control" id="prompt-select">
                         <option value="Tell me a joke">Tell me a joke</option>
                         <option value="Explain relativity">Explain relativity</option>
@@ -46,8 +46,11 @@
                 <button type="button" class="btn btn-primary" onclick="saveMarkdown()">Save</button>
             </form>
             <div class="mt-3">
-                <h5>Rendered Markdown</h5>
-                <div id="rendered-markdown" class="border p-3"></div>
+                <button type="button" class="btn btn-secondary" onclick="getCachedMarkdown()">Get Cached Markdown</button>
+                <div class="mt-3">
+                    <h5>Rendered Markdown</h5>
+                    <div id="rendered-markdown" class="border p-3"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,6 +78,16 @@ function saveMarkdown() {
         data: { markdown_content: markdownContent },
         success: function(response) {
             $('#rendered-markdown').html(response.html_content);
+        }
+    });
+}
+
+function getCachedMarkdown() {
+    $.ajax({
+        url: '/get_cached_markdown',
+        method: 'GET',
+        success: function(response) {
+            $('#rendered-markdown').html(response.cached_markdown);
         }
     });
 }
