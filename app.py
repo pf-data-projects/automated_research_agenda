@@ -53,12 +53,14 @@ def get_cached_markdown():
     concatenated_markdown = '\n'.join(markdown_cache)
     return jsonify({'cached_markdown': concatenated_markdown})
 
+
 def get_markdown_internal():
     markdown_list = markdown_cache
     markdown_payload = ""
     for item in markdown_list:
         markdown_payload += '\n' + item
     return markdown_payload
+
 
 def call_openai_api(prompt, extra_instructions):
     markdown_data = get_markdown_internal()
@@ -76,7 +78,11 @@ def call_openai_api(prompt, extra_instructions):
                 'content': f'{prompt}\n\n{extra_instructions}\n\n Here is what you have previously sent: {markdown_data}'}
         ]
     }
-    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
+    response = requests.post(
+        'https://api.openai.com/v1/chat/completions',
+        headers=headers,
+        json=data
+    )
     if response.status_code == 200:
         return response.json().get('choices', [{}])[0].get('message', {}).get('content', '')
     return 'Error contacting OpenAI API'

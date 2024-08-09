@@ -1,5 +1,3 @@
-
-
 #prompt-col {
     background-color: #e3d8d8;
     height: 100vh;
@@ -15,7 +13,7 @@ body, html {
     
 .container {
     width: 100%;
-    max-width: 1200px; /* Increased maximum width */
+    max-width: 1200px; 
 }
 
 .row {
@@ -28,17 +26,17 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px; /* Added padding for more space */
+    padding: 20px;
 }
 
 #ai-response {
     width: 100%;
-    height: 300px; /* Fixed height for the chat history */
-    overflow-y: auto; /* Enable vertical scrolling */
-    background-color: #f8f9fa; /* Light background for better readability */
-    border: 1px solid #ddd; /* Add a border to define the area */
-    border-radius: 5px; /* Slight rounding of the corners */
-    padding: 15px; /* Padding inside the chat box */
+    height: 300px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
@@ -60,22 +58,22 @@ body, html {
 
 #prompt-select-container img {
     margin-right: 10px;
-    height: 40px; /* Adjusted logo size */
+    height: 40px;
 }
 
 #extra-instructions {
     width: 100%;
-    resize: none; /* Prevent resizing of the textarea */
+    resize: none;
 }
 
 #ai-form {
     width: 100%;
-    max-width: 600px; /* Ensure form is not too wide */
+    max-width: 600px;
 }
 
 #markdown-form, #rendered-markdown {
     width: 100%;
-    max-width: 600px; /* Ensure markdown editor and display are not too wide */
+    max-width: 600px;
 }
 
 #rendered-markdown {
