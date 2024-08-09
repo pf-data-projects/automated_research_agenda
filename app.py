@@ -55,8 +55,8 @@ def get_markdown_internal():
     return markdown_payload
 
 def call_openai_api(prompt, extra_instructions):
-    markdown = get_markdown_internal()
-    print(markdown)
+    markdown_data = get_markdown_internal()
+    print(markdown_data)
     headers = {
         'Authorization': f'Bearer {OPENAI_API_KEY}',
         'Content-Type': 'application/json'
@@ -65,7 +65,9 @@ def call_openai_api(prompt, extra_instructions):
         'model': 'gpt-3.5-turbo',
         'messages': [
             {'role': 'system', 'content': 'You are a helpful assistant.'},
-            {'role': 'user', 'content': f'{prompt}\n\n{extra_instructions}'}
+            {
+                'role': 'user', 
+                'content': f'{prompt}\n\n{extra_instructions}\n\n Here is what you have previously sent: {markdown_data}'}
         ]
     }
     response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)

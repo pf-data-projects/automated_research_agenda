@@ -1,23 +1,26 @@
+
+
+#prompt-col {
+    background-color: #F0F0F0;
+    height: 100vh;
+}
+
 body, html {
     height: 100%;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: Arial, sans-serif;
     color: #333;
-    background-color: #f0f0f0;
+    background-color: #AAA;
 }
-
+    
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px; /* Increased maximum width */
 }
 
 .row {
     display: flex;
     justify-content: space-between;
-
 }
 
 .col-md-6 {
@@ -25,17 +28,59 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px; /* Added padding for more space */
 }
 
-.form-group {
+#ai-response {
     width: 100%;
+    height: 300px; /* Fixed height for the chat history */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #f8f9fa; /* Light background for better readability */
+    border: 1px solid #ddd; /* Add a border to define the area */
+    border-radius: 5px; /* Slight rounding of the corners */
+    padding: 15px; /* Padding inside the chat box */
+    box-sizing: border-box;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-message strong {
+    display: block;
+    margin-bottom: 5px;
 }
 
 #prompt-select-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 #prompt-select-container img {
     margin-right: 10px;
+    height: 40px; /* Adjusted logo size */
+}
+
+#extra-instructions {
+    width: 100%;
+    resize: none; /* Prevent resizing of the textarea */
+}
+
+#ai-form {
+    width: 100%;
+    max-width: 600px; /* Ensure form is not too wide */
+}
+
+#markdown-form, #rendered-markdown {
+    width: 100%;
+    max-width: 600px; /* Ensure markdown editor and display are not too wide */
+}
+
+#rendered-markdown {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
