@@ -34,12 +34,18 @@ def get_response():
 @app.route('/save_markdown', methods=['POST'])
 def save_markdown():
     markdown_content = request.form['markdown_content']
+    markdown_cache = []
     markdown_cache.append(markdown_content)
     markdown_payload = ""
     for item in markdown_cache:
-        markdown_payload += '\n' + item
+        markdown_payload += item
     html_content = markdown.markdown(markdown_payload)
-    return jsonify({'html_content': html_content})
+    return jsonify(
+        {
+            'html_content': html_content,
+            'raw_markdown': markdown_payload
+        }
+    )
 
 
 @app.route('/get_cached_markdown', methods=['GET'])
