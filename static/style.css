@@ -1,7 +1,7 @@
 
 
 #prompt-col {
-    background-color: #F0F0F0;
+    background-color: #e3d8d8;
     height: 100vh;
 }
 
@@ -10,7 +10,7 @@ body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
-    background-color: #AAA;
+    background-color: #f0f0f0;
 }
     
 .container {
@@ -83,4 +83,8 @@ body, html {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.CodeMirror {
+	height: 400px;
 }
